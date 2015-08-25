@@ -6,6 +6,7 @@ var TAG_NAMES = {
     LINK: "link"
 };
 
+exports.TAG_NAMES = TAG_NAMES;
 var TAG_PROPERTIES = {
     NAME: "name",
     CHARSET: "charset",
@@ -14,6 +15,4 @@ var TAG_PROPERTIES = {
     HREF: "href",
     PROPERTY: "property"
 };
-
-exports["default"] = { TAG_NAMES: TAG_NAMES, TAG_PROPERTIES: TAG_PROPERTIES };
-module.exports = exports["default"];
+exports.TAG_PROPERTIES = TAG_PROPERTIES;

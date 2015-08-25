@@ -8,9 +8,9 @@ var _reactAddons = require("react/addons");
 
 var _reactAddons2 = _interopRequireDefault(_reactAddons);
 
-var _indexJsx = require("../index.jsx");
+var _index = require("../index");
 
-var _indexJsx2 = _interopRequireDefault(_indexJsx);
+var _index2 = _interopRequireDefault(_index);
 
 var _exenv = require("exenv");
 
@@ -35,7 +35,7 @@ describe("Helmet", function () {
     describe("api", function () {
         describe("title", function () {
             it("can update page title", function () {
-                HelmetRendered = _reactAddons2["default"].render(_reactAddons2["default"].createElement(_indexJsx2["default"], {
+                HelmetRendered = _reactAddons2["default"].render(_reactAddons2["default"].createElement(_index2["default"], {
                     title: "Test Title"
                 }), container);
 
@@ -44,14 +44,14 @@ describe("Helmet", function () {
 
             it("can update page title with multiple children", function () {
                 HelmetRendered = _reactAddons2["default"].render(_reactAddons2["default"].createElement(
-                    _indexJsx2["default"],
+                    _index2["default"],
                     {
                         title: "Test Title"
                     },
-                    _reactAddons2["default"].createElement(_indexJsx2["default"], {
+                    _reactAddons2["default"].createElement(_index2["default"], {
                         title: "Child One Title"
                     }),
-                    _reactAddons2["default"].createElement(_indexJsx2["default"], {
+                    _reactAddons2["default"].createElement(_index2["default"], {
                         title: "Child Two Title"
                     })
                 ), container);
@@ -61,9 +61,9 @@ describe("Helmet", function () {
 
             it("will set title based on deepest nested component", function () {
                 HelmetRendered = _reactAddons2["default"].render(_reactAddons2["default"].createElement(
-                    _indexJsx2["default"],
+                    _index2["default"],
                     { title: "Main Title" },
-                    _reactAddons2["default"].createElement(_indexJsx2["default"], { title: "Nested Title" })
+                    _reactAddons2["default"].createElement(_index2["default"], { title: "Nested Title" })
                 ), container);
 
                 expect(document.title).to.equal("Nested Title");
@@ -71,16 +71,16 @@ describe("Helmet", function () {
 
             it("will set title using deepest nested component with a defined title", function () {
                 HelmetRendered = _reactAddons2["default"].render(_reactAddons2["default"].createElement(
-                    _indexJsx2["default"],
+                    _index2["default"],
                     { title: "Main Title" },
-                    _reactAddons2["default"].createElement(_indexJsx2["default"], null)
+                    _reactAddons2["default"].createElement(_index2["default"], null)
                 ), container);
 
                 expect(document.title).to.equal("Main Title");
             });
 
             it("will use a titleTemplate if defined", function () {
-                HelmetRendered = _reactAddons2["default"].render(_reactAddons2["default"].createElement(_indexJsx2["default"], {
+                HelmetRendered = _reactAddons2["default"].render(_reactAddons2["default"].createElement(_index2["default"], {
                     title: "Test",
                     titleTemplate: "This is a %s of the titleTemplate feature"
                 }), container);
@@ -89,7 +89,7 @@ describe("Helmet", function () {
             });
 
             it("will replace multiple title strings in titleTemplate", function () {
-                HelmetRendered = _reactAddons2["default"].render(_reactAddons2["default"].createElement(_indexJsx2["default"], {
+                HelmetRendered = _reactAddons2["default"].render(_reactAddons2["default"].createElement(_index2["default"], {
                     title: "Test",
                     titleTemplate: "This is a %s of the titleTemplate feature. Another %s."
                 }), container);
@@ -99,12 +99,12 @@ describe("Helmet", function () {
 
             it("will use a titleTemplate based on deepest nested component", function () {
                 HelmetRendered = _reactAddons2["default"].render(_reactAddons2["default"].createElement(
-                    _indexJsx2["default"],
+                    _index2["default"],
                     {
                         title: "Test",
                         titleTemplate: "This is a %s of the titleTemplate feature"
                     },
-                    _reactAddons2["default"].createElement(_indexJsx2["default"], {
+                    _reactAddons2["default"].createElement(_index2["default"], {
                         title: "Second Test",
                         titleTemplate: "A %s using nested titleTemplate attributes"
                     })
@@ -115,12 +115,12 @@ describe("Helmet", function () {
 
             it("will merge deepest component title with nearest upstream titleTemplate", function () {
                 HelmetRendered = _reactAddons2["default"].render(_reactAddons2["default"].createElement(
-                    _indexJsx2["default"],
+                    _index2["default"],
                     {
                         title: "Test",
                         titleTemplate: "This is a %s of the titleTemplate feature"
                     },
-                    _reactAddons2["default"].createElement(_indexJsx2["default"], { title: "Second Test" })
+                    _reactAddons2["default"].createElement(_index2["default"], { title: "Second Test" })
                 ), container);
 
                 expect(document.title).to.equal("This is a Second Test of the titleTemplate feature");
@@ -129,7 +129,7 @@ describe("Helmet", function () {
 
         describe("meta tags", function () {
             it("can update meta tags", function () {
-                HelmetRendered = _reactAddons2["default"].render(_reactAddons2["default"].createElement(_indexJsx2["default"], {
+                HelmetRendered = _reactAddons2["default"].render(_reactAddons2["default"].createElement(_index2["default"], {
                     meta: [{ "charset": "utf-8" }, { "name": "description", "content": "Test description" }, { "http-equiv": "content-type", "content": "text/html" }, { "property": "og:type", "content": "article" }]
                 }), container);
 
@@ -145,7 +145,7 @@ describe("Helmet", function () {
             });
 
             it("will clear all meta tags if none are specified", function () {
-                HelmetRendered = _reactAddons2["default"].render(_reactAddons2["default"].createElement(_indexJsx2["default"], null), container);
+                HelmetRendered = _reactAddons2["default"].render(_reactAddons2["default"].createElement(_index2["default"], null), container);
 
                 var existingTags = headElement.querySelectorAll("meta[" + HELMET_ATTRIBUTE + "]");
 
@@ -154,7 +154,7 @@ describe("Helmet", function () {
             });
 
             it("tags without 'name', 'http-equiv', 'property', or 'charset' will not be accepted", function () {
-                HelmetRendered = _reactAddons2["default"].render(_reactAddons2["default"].createElement(_indexJsx2["default"], {
+                HelmetRendered = _reactAddons2["default"].render(_reactAddons2["default"].createElement(_index2["default"], {
                     meta: ["content", "won't work"]
                 }), container);
 
@@ -166,11 +166,11 @@ describe("Helmet", function () {
 
             it("will set meta tags based on deepest nested component", function () {
                 HelmetRendered = _reactAddons2["default"].render(_reactAddons2["default"].createElement(
-                    _indexJsx2["default"],
+                    _index2["default"],
                     {
                         meta: [{ "charset": "utf-8" }, { "name": "description", "content": "Test description" }]
                     },
-                    _reactAddons2["default"].createElement(_indexJsx2["default"], {
+                    _reactAddons2["default"].createElement(_index2["default"], {
                         meta: [{ "name": "description", "content": "Inner description" }, { "name": "keywords", "content": "test,meta,tags" }]
                     })
                 ), container);
@@ -206,7 +206,7 @@ describe("Helmet", function () {
             });
 
             it("will allow duplicate meta tags if specified in the same component", function () {
-                HelmetRendered = _reactAddons2["default"].render(_reactAddons2["default"].createElement(_indexJsx2["default"], {
+                HelmetRendered = _reactAddons2["default"].render(_reactAddons2["default"].createElement(_index2["default"], {
                     meta: [{ "name": "description", "content": "Test description" }, { "name": "description", "content": "Duplicate description" }]
                 }), container);
 
@@ -236,11 +236,11 @@ describe("Helmet", function () {
 
             it("will override duplicate meta tags with single meta tag in a nested component", function () {
                 HelmetRendered = _reactAddons2["default"].render(_reactAddons2["default"].createElement(
-                    _indexJsx2["default"],
+                    _index2["default"],
                     {
                         meta: [{ "name": "description", "content": "Test description" }, { "name": "description", "content": "Duplicate description" }]
                     },
-                    _reactAddons2["default"].createElement(_indexJsx2["default"], {
+                    _reactAddons2["default"].createElement(_index2["default"], {
                         meta: [{ "name": "description", "content": "Inner description" }]
                     })
                 ), container);
@@ -264,11 +264,11 @@ describe("Helmet", function () {
 
             it("will override single meta tag with duplicate meta tags in a nested component", function () {
                 HelmetRendered = _reactAddons2["default"].render(_reactAddons2["default"].createElement(
-                    _indexJsx2["default"],
+                    _index2["default"],
                     {
                         meta: [{ "name": "description", "content": "Test description" }]
                     },
-                    _reactAddons2["default"].createElement(_indexJsx2["default"], {
+                    _reactAddons2["default"].createElement(_index2["default"], {
                         meta: [{ "name": "description", "content": "Inner description" }, { "name": "description", "content": "Inner duplicate description" }]
                     })
                 ), container);
@@ -300,7 +300,7 @@ describe("Helmet", function () {
 
         describe("link tags", function () {
             it("can update link tags", function () {
-                HelmetRendered = _reactAddons2["default"].render(_reactAddons2["default"].createElement(_indexJsx2["default"], {
+                HelmetRendered = _reactAddons2["default"].render(_reactAddons2["default"].createElement(_index2["default"], {
                     link: [{ "href": "http://localhost/helmet", "rel": "canonical" }, { "href": "http://localhost/style.css", "rel": "stylesheet", "type": "text/css" }]
                 }), container);
 
@@ -316,7 +316,7 @@ describe("Helmet", function () {
             });
 
             it("will clear all link tags if none are specified", function () {
-                HelmetRendered = _reactAddons2["default"].render(_reactAddons2["default"].createElement(_indexJsx2["default"], null), container);
+                HelmetRendered = _reactAddons2["default"].render(_reactAddons2["default"].createElement(_index2["default"], null), container);
 
                 var existingTags = headElement.querySelectorAll("link[" + HELMET_ATTRIBUTE + "]");
 
@@ -326,11 +326,11 @@ describe("Helmet", function () {
 
             it("will set link tags based on deepest nested component", function () {
                 HelmetRendered = _reactAddons2["default"].render(_reactAddons2["default"].createElement(
-                    _indexJsx2["default"],
+                    _index2["default"],
                     {
                         link: [{ "rel": "canonical", "href": "http://localhost/helmet" }, { "href": "http://localhost/style.css", "rel": "stylesheet", "type": "text/css", "media": "all" }]
                     },
-                    _reactAddons2["default"].createElement(_indexJsx2["default"], {
+                    _reactAddons2["default"].createElement(_index2["default"], {
                         link: [{ "rel": "canonical", "href": "http://localhost/helmet/innercomponent" }, { "href": "http://localhost/inner.css", "rel": "stylesheet", "type": "text/css", "media": "all" }]
                     })
                 ), container);
@@ -371,7 +371,7 @@ describe("Helmet", function () {
             });
 
             it("will allow duplicate link tags if specified in the same component", function () {
-                HelmetRendered = _reactAddons2["default"].render(_reactAddons2["default"].createElement(_indexJsx2["default"], {
+                HelmetRendered = _reactAddons2["default"].render(_reactAddons2["default"].createElement(_index2["default"], {
                     link: [{ "rel": "canonical", "href": "http://localhost/helmet" }, { "rel": "canonical", "href": "http://localhost/helmet/component" }]
                 }), container);
 
@@ -401,11 +401,11 @@ describe("Helmet", function () {
 
             it("will override duplicate link tags with a single link tag in a nested component", function () {
                 HelmetRendered = _reactAddons2["default"].render(_reactAddons2["default"].createElement(
-                    _indexJsx2["default"],
+                    _index2["default"],
                     {
                         link: [{ "rel": "canonical", "href": "http://localhost/helmet" }, { "rel": "canonical", "href": "http://localhost/helmet/component" }]
                     },
-                    _reactAddons2["default"].createElement(_indexJsx2["default"], {
+                    _reactAddons2["default"].createElement(_index2["default"], {
                         link: [{ "rel": "canonical", "href": "http://localhost/helmet/innercomponent" }]
                     })
                 ), container);
@@ -429,11 +429,11 @@ describe("Helmet", function () {
 
             it("will override single link tag with duplicate link tags in a nested component", function () {
                 HelmetRendered = _reactAddons2["default"].render(_reactAddons2["default"].createElement(
-                    _indexJsx2["default"],
+                    _index2["default"],
                     {
                         link: [{ "rel": "canonical", "href": "http://localhost/helmet" }]
                     },
-                    _reactAddons2["default"].createElement(_indexJsx2["default"], {
+                    _reactAddons2["default"].createElement(_index2["default"], {
                         link: [{ "rel": "canonical", "href": "http://localhost/helmet/component" }, { "rel": "canonical", "href": "http://localhost/helmet/innercomponent" }]
                     })
                 ), container);
@@ -466,7 +466,7 @@ describe("Helmet", function () {
 
     describe("misc", function () {
         it("without prerender will return default head values when a DOM is present", function () {
-            HelmetRendered = _reactAddons2["default"].render(_reactAddons2["default"].createElement(_indexJsx2["default"], {
+            HelmetRendered = _reactAddons2["default"].render(_reactAddons2["default"].createElement(_index2["default"], {
                 title: "Title that won't be recorded",
                 meta: [{ "charset": "utf-8" }, { "name": "description", "content": "Test description" }, { "http-equiv": "content-type", "content": "text/html" }, { "property": "og:type", "content": "article" }],
                 link: [{ "href": "http://localhost/helmet/innercomponent", "rel": "canonical" }, { "href": "http://localhost/inner.css", "rel": "stylesheet", "type": "text/css", "media": "all" }]
@@ -479,7 +479,7 @@ describe("Helmet", function () {
         });
 
         it("will html encode string", function () {
-            HelmetRendered = _reactAddons2["default"].render(_reactAddons2["default"].createElement(_indexJsx2["default"], {
+            HelmetRendered = _reactAddons2["default"].render(_reactAddons2["default"].createElement(_index2["default"], {
                 meta: [{ "name": "description", "content": "This is \"quoted\" text and & and '." }]
             }), container);
 
@@ -500,11 +500,11 @@ describe("Helmet", function () {
         it("will html encode title on server", function () {
             _exenv2["default"].canUseDOM = false;
 
-            HelmetRendered = _reactAddons2["default"].render(_reactAddons2["default"].createElement(_indexJsx2["default"], {
+            HelmetRendered = _reactAddons2["default"].render(_reactAddons2["default"].createElement(_index2["default"], {
                 title: "Dangerous <script> include"
             }), container);
 
-            var head = _indexJsx2["default"].rewind();
+            var head = _index2["default"].rewind();
 
             expect(head.title).to.be.equal("Dangerous &#x3C;script&#x3E; include");
 
